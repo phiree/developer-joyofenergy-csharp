@@ -15,6 +15,7 @@ using Microsoft.Extensions.Options;
 
 namespace JOIEnergy
 {
+    
     public class Startup
     {
         public Startup(IConfiguration configuration)

@@ -19,10 +19,11 @@ namespace JOIEnergy.Controllers
             this._pricePlanService = pricePlanService;
             this._accountService = accountService;
         }
-
+        //prob: objectresult.   objectResult.Value是 非强类型的 object类型. 业务目的不明晰
         [HttpGet("compare-all/{smartMeterId}")]
         public ObjectResult CalculatedCostForEachPricePlan(string smartMeterId)
         {
+            //prob: coding:无效代码
             var pricePlanId = _accountService.GetPricePlanIdForSmartMeterId(smartMeterId);
             var costPerPricePlan = _pricePlanService.GetConsumptionCostOfElectricityReadingsForEachPricePlan(smartMeterId);
             if (!costPerPricePlan.Any())
@@ -41,13 +42,14 @@ namespace JOIEnergy.Controllers
         [HttpGet("recommend/{smartMeterId}")]
         public ObjectResult RecommendCheapestPricePlans(string smartMeterId, int? limit = null) {
             var consumptionForPricePlans = _pricePlanService.GetConsumptionCostOfElectricityReadingsForEachPricePlan(smartMeterId);
-
+            //prob: coding 重复的代码. 和上面的逻辑重复. 
+          
             if (!consumptionForPricePlans.Any()) {
                 return new NotFoundObjectResult(string.Format("Smart Meter ID ({0}) not found", smartMeterId));
             }
 
             var recommendations = consumptionForPricePlans.OrderBy(pricePlanComparison => pricePlanComparison.Value);
-
+            //prob: 领域逻辑外泄.应该在领域内实现.
             if (limit.HasValue && limit.Value < recommendations.Count())
             {
                 return new ObjectResult(recommendations.Take(limit.Value));

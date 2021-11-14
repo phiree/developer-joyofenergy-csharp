@@ -32,6 +32,7 @@ namespace JOIEnergy.Services
 
             return (decimal)(last - first).TotalHours;
         }
+        //prob: 没有根据价格规则计算价格
         private decimal calculateCost(List<ElectricityReading> electricityReadings, PricePlan pricePlan)
         {
             var average = calculateAverageReading(electricityReadings);

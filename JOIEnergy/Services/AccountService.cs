@@ -6,6 +6,7 @@ namespace JOIEnergy.Services
 {
     public class AccountService : Dictionary<string, Supplier>, IAccountService
     { 
+        //电表对应的供应商.
         private Dictionary<string, Supplier> _smartMeterToPricePlanAccounts;
 
         public AccountService(Dictionary<string, Supplier> smartMeterToPricePlanAccounts) {
