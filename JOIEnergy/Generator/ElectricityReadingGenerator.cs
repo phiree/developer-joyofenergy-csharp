@@ -10,7 +10,7 @@ namespace JOIEnergy.Generator
         {
 
         }
-        //prob: 模拟读数只有 200秒, 没有跨天. 但是 价格规则是以天为单位进行计算的?
+        //prob: domain 模拟读数只有 200秒, 没有跨天. 但是 价格规则是以天为单位进行计算的?
         /// <summary>
         /// 模拟读数 
         /// 

@@ -30,7 +30,7 @@ namespace JOIEnergy.Controllers
             _meterReadingService.StoreReadings(meterReadings.SmartMeterId,meterReadings.ElectricityReadings);
             return new OkObjectResult("{}");
         }
-        //prob: coding ,应该放到domain中
+        //prob: domain ,领域逻辑, 应该放到领域中
         private bool IsMeterReadingsValid(MeterReadings meterReadings)
         {
           
@@ -39,7 +39,7 @@ namespace JOIEnergy.Controllers
             return smartMeterId != null && smartMeterId.Any()
                     && electricityReadings != null && electricityReadings.Any();
         }
-        //prob: 返回值不够精确.
+        //prob: coding 返回值不够精确.
         [HttpGet("read/{smartMeterId}")]
         public ObjectResult GetReading(string smartMeterId) {
             return new OkObjectResult(_meterReadingService.GetReadings(smartMeterId));

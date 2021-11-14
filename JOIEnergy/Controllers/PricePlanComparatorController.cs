@@ -49,7 +49,7 @@ namespace JOIEnergy.Controllers
             }
 
             var recommendations = consumptionForPricePlans.OrderBy(pricePlanComparison => pricePlanComparison.Value);
-            //prob: 领域逻辑外泄.应该在领域内实现.
+            //prob: domain 领域逻辑外泄.应该在领域内实现.
             if (limit.HasValue && limit.Value < recommendations.Count())
             {
                 return new ObjectResult(recommendations.Take(limit.Value));

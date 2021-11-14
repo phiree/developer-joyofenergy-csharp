@@ -32,15 +32,18 @@ namespace JOIEnergy.Services
 
             return (decimal)(last - first).TotalHours;
         }
-        //prob: 没有根据价格规则计算价格
+        //prob: domain 没有根据峰值价格(PricePlan的Multiplier)规则计算价格
         private decimal calculateCost(List<ElectricityReading> electricityReadings, PricePlan pricePlan)
         {
             var average = calculateAverageReading(electricityReadings);
             var timeElapsed = calculateTimeElapsed(electricityReadings);
+            //domain: 计算的是 每小时的单价.
             var averagedCost = average/timeElapsed;
+            //应该使用 pricePlan.GetPrice(dateoftime)
+            //prob: 业务疑问.  均价*基础价格? 
             return averagedCost * pricePlan.UnitRate;
         }
-
+        //均价
         public Dictionary<String, decimal> GetConsumptionCostOfElectricityReadingsForEachPricePlan(String smartMeterId)
         {
             List<ElectricityReading> electricityReadings = _meterReadingService.GetReadings(smartMeterId);
