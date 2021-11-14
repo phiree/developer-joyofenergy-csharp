@@ -19,7 +19,7 @@ namespace JOIEnergy.Controllers
             this._pricePlanService = pricePlanService;
             this._accountService = accountService;
         }
-        //prob: objectresult.   objectResult.Value是 非强类型的 object类型. 业务目的不明晰
+        //prob: architecture    objectResult.Value是 非强类型的 object类型. 业务目的不明晰
         [HttpGet("compare-all/{smartMeterId}")]
         public ObjectResult CalculatedCostForEachPricePlan(string smartMeterId)
         {
