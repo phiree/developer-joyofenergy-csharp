@@ -12,7 +12,11 @@ namespace JOIEnergy.Services
         public AccountService(Dictionary<string, Supplier> smartMeterToPricePlanAccounts) {
             _smartMeterToPricePlanAccounts = smartMeterToPricePlanAccounts;
         }
-
+        /// <summary>
+        /// 获取智能表当前的供应商
+        /// </summary>
+        /// <param name="smartMeterId"></param>
+        /// <returns></returns>
         public Supplier GetPricePlanIdForSmartMeterId(string smartMeterId) {
             if (!_smartMeterToPricePlanAccounts.ContainsKey(smartMeterId))
             {

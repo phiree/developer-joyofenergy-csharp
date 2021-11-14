@@ -13,10 +13,10 @@ namespace JOIEnergy.Domain
     {
         public Supplier EnergySupplier { get; set; }
         public decimal UnitRate { get; set; }
-        
+        //prob: 单价的单位? 只能通过代码看到 单位是小时. 应该明示.
         public IList<PeakTimeMultiplier> PeakTimeMultiplier { get; set;}
 
-        //prob: 违反依赖最小化原则(迪米特原则). 该规则只需要知道 星期几 即可, 不需要知道具体时间)
+        //prob: oo design 违反依赖最小化原则(迪米特原则). 该规则只需要知道 星期几 即可, 不需要知道具体时间)
         public decimal GetPrice(DateTime datetime) {
             var multiplier = PeakTimeMultiplier.FirstOrDefault(m => m.DayOfWeek == datetime.DayOfWeek);
 
@@ -28,11 +28,13 @@ namespace JOIEnergy.Domain
         }
     }
     /// <summary>
-    /// 高峰期规则
+    /// prob: domain v2的部分代码(峰/谷价格设定)
+    /// 
     /// </summary>
     public class PeakTimeMultiplier
     {
         public DayOfWeek DayOfWeek { get; set; }
+       
         public decimal Multiplier { get; set; }
     }
 }

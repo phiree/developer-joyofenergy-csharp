@@ -68,7 +68,8 @@ namespace JOIEnergy
 
             app.UseMvc();
         }
-
+        //prob:architecture 模拟数据. 应该使用 IRepository, 然后在单元测试中模拟数据, 而不是放在产品代码中.
+        //或者说: 只是为了面试方便?
         private Dictionary<string, List<ElectricityReading>> GenerateMeterElectricityReadings() {
             var readings = new Dictionary<string, List<ElectricityReading>>();
             var generator = new ElectricityReadingGenerator();
